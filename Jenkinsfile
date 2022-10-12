@@ -8,8 +8,9 @@ pipeline {
 				success {
 					echo "Now Archiving the Artifacts...."
 					archiveArtifacts artifacts:'**/*.war'
-					}
 				}
 			}
 		}
+	}
+}
 	
