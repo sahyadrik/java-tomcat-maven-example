@@ -9,7 +9,8 @@ pipeline {
     stages {
         stage('Build Application') {
             steps {
-                sh 'mvn -f pom.xml clean package'
+                // sh 'mvn -f pom.xml clean package'
+                sh 'mvn install tomcat10:deploy'
             }
             post {
                 success {
@@ -29,27 +30,27 @@ pipeline {
             }
         } //stage1
 
-        stage('Deploy to Tomcat') {
-            steps {
-                script {
-                    // Unstash the WAR file from the previous stage
-                    // unstash 'war'
+        // stage('Deploy to Tomcat') {
+        //     steps {
+        //         script {
+        //             // Unstash the WAR file from the previous stage
+        //             // unstash 'war'
 
-                    // Deploy the WAR file to Tomcat using a manual shell script
-                    sh '''
-                        #!/bin/bash
+        //             // Deploy the WAR file to Tomcat using a manual shell script
+        //             sh '''
+        //                 #!/bin/bash
 
-                        # Replace placeholders with your actual values
-                        TOMCAT_PATH="${tomcatPath}"
-                        TOMCAT_MANAGER_URL="${tomcatManagerUrl}"
-                        WAR_FILE="${WORKSPACE}/target/*.war"
+        //                 # Replace placeholders with your actual values
+        //                 TOMCAT_PATH="${tomcatPath}"
+        //                 TOMCAT_MANAGER_URL="${tomcatManagerUrl}"
+        //                 WAR_FILE="${WORKSPACE}/target/*.war"
 
-                        # Deploy using Tomcat Manager API
-                        curl --upload-file "${WAR_FILE}" "${TOMCAT_MANAGER_URL}?path=/contextPath&update=true"
-                    '''
-                }
-            }
-        }
+        //                 # Deploy using Tomcat Manager API
+        //                 curl --upload-file "${WAR_FILE}" "${TOMCAT_MANAGER_URL}?path=/contextPath&update=true"
+        //             '''
+        //         }
+        //     }
+        // }
 
         stage('Clean Workspace') {
             steps {
