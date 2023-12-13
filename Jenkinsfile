@@ -23,7 +23,7 @@ pipeline {
                         // stash name: 'war', includes: '**/*.war'
                         
                         // Optionally, you can publish to Artifactory or move to the desired location
-                        sh "cp -r ${WORKSPACE}/*.war ${targetPath}"
+                        sh "cp -r ${WORKSPACE}/target/*.war ${targetPath}"
                     }
                 }
             }
@@ -42,7 +42,7 @@ pipeline {
                         # Replace placeholders with your actual values
                         TOMCAT_PATH="${tomcatPath}"
                         TOMCAT_MANAGER_URL="${tomcatManagerUrl}"
-                        WAR_FILE="${WORKSPACE}/*.war"
+                        WAR_FILE="${WORKSPACE}/target/*.war"
 
                         # Deploy using Tomcat Manager API
                         curl --upload-file "${WAR_FILE}" "${TOMCAT_MANAGER_URL}?path=/contextPath&update=true"
