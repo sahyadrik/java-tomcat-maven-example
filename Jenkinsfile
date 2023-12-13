@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     // Unstash the WAR file from the previous stage
-                    unstash 'war'
+                    // unstash 'war'
 
                     // Deploy the WAR file to Tomcat using a manual shell script
                     sh '''
