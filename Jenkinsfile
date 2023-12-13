@@ -10,7 +10,7 @@ pipeline {
         stage('Build Application') {
             steps {
                 // sh 'mvn -f pom.xml clean package'
-                sh 'mvn install tomcat10:deploy'
+                sh 'mvn clean install -U tomcat10:deploy'
             }
             post {
                 success {
