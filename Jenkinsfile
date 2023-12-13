@@ -42,7 +42,7 @@ pipeline {
                         # Replace placeholders with your actual values
                         TOMCAT_PATH="${tomcatPath}"
                         TOMCAT_MANAGER_URL="${tomcatManagerUrl}"
-                        WAR_FILE="${WORKSPACE}/*.war"
+                        WAR_FILE="${artifactoryPath}/*.war"
 
                         # Deploy using Tomcat Manager API
                         curl --upload-file "${WAR_FILE}" "${TOMCAT_MANAGER_URL}?path=/contextPath&update=true"
